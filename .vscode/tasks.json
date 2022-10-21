@@ -1,0 +1,36 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "build",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      // Works only if you have ilverify tool installed
+      // See: https://github.com/dotnet/runtime/blob/main/src/coreclr/tools/ILVerify/README.md
+      "label": "verify",
+      "command": "ilverify",
+      "type": "shell",
+      "args": [
+        "\"${workspaceFolder}/bin/Debug/net6.0/IL_HelloWorld.dll\"",
+        "-r",
+        // TODO: Change to your .NET Runtime directory
+        "\"/usr/local/share/dotnet/shared/Microsoft.NETCore.App/7.0.0-preview.7.22375.6/*.dll\""
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
