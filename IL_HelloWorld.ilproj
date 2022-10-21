@@ -1,0 +1,20 @@
+<!-- Or you can specify only name of Sdk here (Microsoft.NET.Sdk.IL) and name+version in globals.json:
+{
+  "msbuild-sdks": {
+    "Microsoft.NET.Sdk.IL": "6.0.0"
+  }
+}
+-->
+<!-- see: https://learn.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk#how-project-sdks-are-resolved -->
+<Project Sdk="Microsoft.NET.Sdk.IL/6.0.0">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    
+    <!-- ILProj cannot generate/consume $(OutDir)\ref\$(TargetFramework) -->
+    <!-- the compiler should not generate a reference assembly -->
+    <!-- see also https://claires.site/2018/07/03/create-and-pack-reference-assemblies/ -->
+    <!-- see also https://github.com/NuGet/Home/issues/4184 -->
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+  </PropertyGroup>
+</Project>
